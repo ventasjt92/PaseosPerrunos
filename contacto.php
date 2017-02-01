@@ -1,3 +1,46 @@
+<?php
+	if (isset($_POST["submit"])) {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$message = $_POST['message'];
+		$human = intval($_POST['human']);
+		$from = 'Paseos Perrunos'; 
+		$to = 'ventasjt92@gmail.com'; 
+		$subject = 'Mensaje de PaseosPerrunos';
+		
+		$body = "From: $name\n E-Mail: $email\n Message:\n $message";
+ 
+		// Check if name has been entered
+		if (!$_POST['name']) {
+			$errName = 'Ingresa tu Nombre';
+		}
+		
+		// Check if email has been entered and is valid
+		if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			$errEmail = 'Ingresa un email valido';
+		}
+		
+		//Check if message has been entered
+		if (!$_POST['message']) {
+			$errMessage = 'Ingresa tu mensaje';
+		}
+		//Check if simple anti-bot test is correct
+		if ($human !== 5) {
+			$errHuman = 'El mensaje anti-spam es incorrecto';
+		}
+ 
+    // If there are no errors, send the email
+    if (!$errName && !$errEmail && !$errMessage && !$errHuman) {
+        if (mail ($to, $subject, $body, $from)) {
+            $result='<div class="alert alert-success">Mensaje enviado con exito!</div>';
+        } else {
+            $result='<div class="alert alert-danger">Lo sentimos, ocurrio un error, intenta mas tarde!</div>';
+        }
+    }
+        }
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,65 +109,58 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-11 col-sm-offset-1 col-md-9 col-md-offset-1">
-                <h1><strong>Servicios Disponibles!</strong></h1>
+            
+            
+            <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1">
+                <h1><strong>Contactanos</strong></h1>
                 <br>
-                <p>Puedes escoger entre cualquiera de los siguientes servicios. Escoge el que mejor se adapte a lo que necesitas tu y tu mascota, si tienes alguna duda o alguna solicitud especial puedes contactarnos y estaremos encantados de ayudarte.</p>
+                <p>Para reservas, consultas o cualquier otra informacion llamanos al <strong><em>666-734-745</em></strong> o tambien puedes enviar un mensaje rellenando el siguiente formulario a continuacion: </p>
                 <br>    
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-3 col-md-offset-1">
-                <div class="thumbnail">
-                  <img src="img/Gallery-1.jpg" alt="dogpurpose">
-                  <div class="caption">
-                    <h3>Paseo 30 Min</h3>
-                    <p>Paseo corto para que tu mascota estire las piernas y haga sus necesidades, recomendadas para empezar o terminar el dia.</p>
-                    <p><strong><a href="#" class="btn btn-success" role="button">Contratar</a> &nbsp;3&euro;</strong></p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 col-md-3 col-md-offset-0">
-                <div class="thumbnail">
-                  <img src="img/Gallery-2.jpg" alt="dogpurpose">
-                  <div class="caption">
-                    <h3>Paseo 1 Hora</h3>
-                    <p>Paseo un poco mas largo para que tu mascota se mantenga en forma.</p>
-                    <p><strong><a href="#" class="btn btn-success" role="button">Contratar</a> &nbsp;5&euro;</strong></p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0">
-                <div class="thumbnail">
-                  <img src="img/Gallery-3.jpg" alt="dogpurpose">
-                  <div class="caption">
-                    <h3>Paseo 2 Horas</h3>
-                    <p>Paseo largo para que tu mascota drene toda su energia y pase la noche descansando.</p>
-                    <p><strong><a href="#" class="btn btn-success" role="button">Contratar</a> &nbsp;10&euro;</strong></p>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-3 col-md-offset-1">
-                <div class="thumbnail">
-                  <img src="img/Gallery-4.jpg" alt="dogpurpose">
-                  <div class="caption">
-                    <h3>Hotel 1 Noche</h3>
-                    <p>Incluye comida, bebida 3 Paseos y una camita limpia y calentita para la comodidad de tu mascota.</p>
-                    <p><strong><a href="#" class="btn btn-primary" role="button">Reservar</a> &nbsp;15&euro;</strong></p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0 col-md-3 col-md-offset-0">
-                <div class="thumbnail">
-                  <img src="img//Gallery-5.jpg" alt="dogpurpose">
-                  <div class="caption">
-                    <h3>Otros</h3>
-                    <p>Servicios de entrenamiento, paseos especificos y mas.</p>
-                    <p><strong><a href="#" class="btn btn-danger" role="button">Contactar</a></strong></p>
-                  </div>
-                </div>
+            
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0">
+                <div class="hidden-xs"><br></div>
+                
+                <form class="form-horizontal" role="form" method="post" action="contacto.php">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="<?php echo htmlspecialchars($_POST['name']); ?>">
+                            <?php echo "<p class='text-danger'>$errName</p>";?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+                            <?php echo "<p class='text-danger'>$errEmail</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="col-sm-2 control-label">Message</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="4" name="message" id="message"></textarea>
+                            <?php echo "<p class='text-danger'>$errMessage</p>";?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+                            <?php echo "<p class='text-danger'>$errHuman</p>";?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <?php echo $result; ?>	
+                        </div>
+                    </div>
+                    </form>
             </div>
         </div>
         
