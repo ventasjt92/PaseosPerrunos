@@ -4,9 +4,13 @@
 		$email = $_POST['email'];
 		$message = $_POST['message'];
 		$human = intval($_POST['human']);
-		$from = 'Paseos Perrunos'; 
+		$from = 'Paseos Perrunos Web'; 
 		$to = 'ventasjt92@gmail.com'; 
 		$subject = 'Mensaje de PaseosPerrunos';
+        $errName = '';
+        $errEmail = '';
+        $errMessage = '';
+        $errHuman = '';
 		
 		$body = "From: $name\n E-Mail: $email\n Message:\n $message";
  
@@ -53,6 +57,9 @@
     <meta name="author" content="">
 
     <title>Paseos Perrunos Barcelona</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/png" href="img/icon.png" />
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -91,13 +98,13 @@
                         <a href="acerca.html"><span class="glyphicon glyphicon-heart"></span><strong> Acerca de</strong></a>
                     </li>
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-map-marker"></span><strong> Servicios</strong></a>
+                        <a href="servicios.html"><span class="glyphicon glyphicon-map-marker"></span><strong> Servicios</strong></a>
                     </li>
                     <li>
                         <a href="galeria.html"><span class="glyphicon glyphicon-picture"></span><strong> Galeria</strong></a>
                     </li>
                     <li>
-                        <a href="contacto.html"><span class="glyphicon glyphicon-earphone"></span><strong> Contacto</strong></a>
+                        <a href="#"><span class="glyphicon glyphicon-earphone"></span><strong> Contacto</strong></a>
                     </li>
                 </ul>
             </div>
@@ -114,7 +121,7 @@
             <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1">
                 <h1><strong>Contactanos</strong></h1>
                 <br>
-                <p>Para reservas, consultas o cualquier otra informacion llamanos al <strong><em>666-734-745</em></strong> o tambien puedes enviar un mensaje rellenando el siguiente formulario a continuacion: </p>
+                <p>Para contratos, reservas, consultas o cualquier otra informacion llamanos al <strong><em>666-734-745</em></strong> o tambien puedes enviar un mensaje rellenando el siguiente formulario a continuacion: </p>
                 <br>    
             </div>
             
@@ -123,36 +130,36 @@
                 
                 <form class="form-horizontal" role="form" method="post" action="contacto.php">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <label for="name" class="col-sm-2 control-label">Nombre</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="<?php echo htmlspecialchars($_POST['name']); ?>">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nombre y Apellido" value="<?php echo htmlspecialchars($_POST['name']); ?>">
                             <?php echo "<p class='text-danger'>$errName</p>";?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
                             <?php echo "<p class='text-danger'>$errEmail</p>"; ?>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="message" class="col-sm-2 control-label">Message</label>
+                        <label for="message" class="col-sm-2 control-label">Mensaje</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" rows="4" name="message" id="message"></textarea>
                             <?php echo "<p class='text-danger'>$errMessage</p>";?>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+                        <label for="human" class="col-sm-2 control-label">2+3= ?</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+                            <input type="text" class="form-control" id="human" name="human" placeholder="Respuesta">
                             <?php echo "<p class='text-danger'>$errHuman</p>";?>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-2">
-                            <input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+                            <input id="submit" name="submit" type="submit" value="Enviar" class="btn btn-primary">
                         </div>
                     </div>
                     <div class="form-group">
@@ -173,7 +180,7 @@
                 <div class="col-xs-6 col-sm-4 col-md-4 col-md-offset-1">
                     <strong><p>Direcci&oacute;n</p></strong>
                     <p>Carrer de la Marina, 372-382 -  Barcelona, 08025</p>
-                    <a>Google Maps</a>
+                    <a href="https://goo.gl/maps/VCUsN5iodfS2" target="_blank">Google Maps</a>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-3 col-md-offset-0">
                     <strong><p>Horario</p></strong>
